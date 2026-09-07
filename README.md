@@ -43,7 +43,7 @@ escrever qualquer código.
 | 03 | [Erros como valores](modulos/03-erros/) | dizer que o pão acabou |
 | 04 | [Métodos e ponteiros](modulos/04-metodos/) | dar baixa no estoque |
 | 05 | [Interfaces implícitas](modulos/05-interfaces/) | trocar onde guarda os dados |
-| 06 | Testes de verdade | ser testada sem framework |
+| 06 | [Testes de verdade](modulos/06-testes/) | ser testada sem framework |
 | 07 | JSON e arquivos | não perder os pedidos ao desligar |
 | 08 | Um programa de terminal | ser usada de verdade |
 | 09 | Genéricos | filtrar cardápio sem repetir código |
