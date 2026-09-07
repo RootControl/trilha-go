@@ -41,7 +41,7 @@ escrever qualquer código.
 | 01 | [Tipos e zero values](modulos/01-tipos/) | descrever produto e pedido |
 | 02 | [Slices e maps](modulos/02-colecoes/) | ter cardápio e estoque |
 | 03 | [Erros como valores](modulos/03-erros/) | dizer que o pão acabou |
-| 04 | Métodos e ponteiros | dar baixa no estoque |
+| 04 | [Métodos e ponteiros](modulos/04-metodos/) | dar baixa no estoque |
 | 05 | Interfaces implícitas | trocar onde guarda os dados |
 | 06 | Testes de verdade | ser testada sem framework |
 | 07 | JSON e arquivos | não perder os pedidos ao desligar |
