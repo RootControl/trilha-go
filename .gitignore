@@ -1,0 +1,10 @@
+# binários compilados
+/bin/
+*.exe
+*.test
+*.out
+
+# lixo de sistema operacional e editor
+.DS_Store
+.idea/
+.vscode/

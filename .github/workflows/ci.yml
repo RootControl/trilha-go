@@ -1,0 +1,30 @@
+name: verificar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Roda toda segunda de manhã. Serve para descobrir que uma versão nova do
+    # Go quebrou o material antes que um aluno descubra.
+    - cron: "0 9 * * 1"
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # A primeira é a versão fixada no go.mod, que é o contrato com o aluno.
+        # A segunda é a mais recente, que é o alarme de incêndio.
+        versao-do-go: ["1.24.x", "stable"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.versao-do-go }}
+
+      - name: Verificar exercícios e soluções
+        run: ./scripts/verificar.sh
