@@ -37,8 +37,8 @@ escrever qualquer código.
 
 | # | Módulo | A padaria aprende a |
 |---|--------|---------------------|
-| 00 | Ambiente e o primeiro teste | receber cliente e mostrar preço |
-| 01 | Tipos e zero values | descrever produto e pedido |
+| 00 | [Ambiente e o primeiro teste](modulos/00-ambiente/) | receber cliente e mostrar preço |
+| 01 | [Tipos e zero values](modulos/01-tipos/) | descrever produto e pedido |
 | 02 | Slices e maps | ter cardápio e estoque |
 | 03 | Erros como valores | dizer que o pão acabou |
 | 04 | Métodos e ponteiros | dar baixa no estoque |
@@ -53,7 +53,7 @@ escrever qualquer código.
 | 13 | Fila de pedidos | não derrubar tudo no horário de pico |
 | 14 | Produção | rodar em contêiner com log e deploy |
 
-Só o módulo 00 está pronto. Os outros vêm nessa ordem.
+Os módulos com link estão prontos. Os outros vêm nessa ordem.
 
 ## Comandos
 
