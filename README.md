@@ -40,7 +40,7 @@ escrever qualquer código.
 | 00 | [Ambiente e o primeiro teste](modulos/00-ambiente/) | receber cliente e mostrar preço |
 | 01 | [Tipos e zero values](modulos/01-tipos/) | descrever produto e pedido |
 | 02 | [Slices e maps](modulos/02-colecoes/) | ter cardápio e estoque |
-| 03 | Erros como valores | dizer que o pão acabou |
+| 03 | [Erros como valores](modulos/03-erros/) | dizer que o pão acabou |
 | 04 | Métodos e ponteiros | dar baixa no estoque |
 | 05 | Interfaces implícitas | trocar onde guarda os dados |
 | 06 | Testes de verdade | ser testada sem framework |
