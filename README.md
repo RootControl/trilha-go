@@ -11,6 +11,10 @@ uma API HTTP e termina com uma fila de pedidos processada em paralelo.
 
 Você precisa de Go 1.24 ou mais novo. Confira com `go version`.
 
+Os módulos 00 a 10 usam só a biblioteca padrão. A partir do 11 há uma
+dependência, um SQLite escrito em Go puro, que o `go test` baixa sozinho na
+primeira vez. Não é preciso instalar banco de dados nenhum.
+
 ```bash
 git clone https://github.com/RootControl/trilha-go
 cd trilha-go
@@ -48,7 +52,7 @@ escrever qualquer código.
 | 08 | [Um programa de terminal](modulos/08-cli/) | ser usada de verdade |
 | 09 | [Genéricos](modulos/09-genericos/) | filtrar cardápio sem repetir código |
 | 10 | [Servidor HTTP](modulos/10-http/) | atender pela internet |
-| 11 | Banco de dados | guardar tudo em Postgres |
+| 11 | [Banco de dados](modulos/11-banco/) | guardar tudo em SQL |
 | 12 | Concorrência | assar vários pães ao mesmo tempo |
 | 13 | Fila de pedidos | não derrubar tudo no horário de pico |
 | 14 | Produção | rodar em contêiner com log e deploy |
