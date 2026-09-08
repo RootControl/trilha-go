@@ -61,7 +61,7 @@ escrever qualquer código.
 | 13 | [Fila de pedidos](modulos/13-fila/) | não derrubar tudo no horário de pico |
 | 14 | [Produção](modulos/14-producao/) | rodar em contêiner com log e deploy |
 
-A trilha está completa: os catorze módulos estão escritos, com exercícios,
+A trilha está completa: os quinze módulos, do 00 ao 14, estão escritos, com exercícios,
 soluções e testes rodando no CI.
 
 Ao final, a padaria é um serviço em contêiner, com API HTTP, banco de dados,

@@ -239,7 +239,7 @@ você poderia colocar no ar.
 
 ## Fim da trilha
 
-Catorze módulos, e a padaria saiu de uma função que cumprimenta cliente até um
+Quinze módulos, do 00 ao 14, e a padaria saiu de uma função que cumprimenta cliente até um
 serviço em contêiner com log estruturado e desligamento ordenado.
 
 Se você chegou até aqui implementando, e não lendo, você escreve Go. O que
