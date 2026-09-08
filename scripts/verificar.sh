@@ -76,8 +76,10 @@ while IFS= read -r fixture; do
   echo "    $fixture -> $destino"
 done < <(find modulos -type d -name testdata -exec find {} -type f -print \; | sort)
 
-echo "==> rodando os testes contra as soluções"
-go test ./solucoes/...
+echo "==> rodando os testes contra as soluções, com o detector de corrida"
+# -race custa tempo e vale cada segundo: ele acha uma classe de bug que
+# nenhum teste comum acha, e que só aparece em produção sob carga.
+go test -race ./solucoes/...
 
 echo
 echo "tudo certo: cada solução passa nos testes do seu próprio módulo."
