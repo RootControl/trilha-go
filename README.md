@@ -46,7 +46,7 @@ escrever qualquer código.
 | 06 | [Testes de verdade](modulos/06-testes/) | ser testada sem framework |
 | 07 | [JSON e arquivos](modulos/07-json/) | não perder os pedidos ao desligar |
 | 08 | [Um programa de terminal](modulos/08-cli/) | ser usada de verdade |
-| 09 | Genéricos | filtrar cardápio sem repetir código |
+| 09 | [Genéricos](modulos/09-genericos/) | filtrar cardápio sem repetir código |
 | 10 | Servidor HTTP | atender pela internet |
 | 11 | Banco de dados | guardar tudo em Postgres |
 | 12 | Concorrência | assar vários pães ao mesmo tempo |
