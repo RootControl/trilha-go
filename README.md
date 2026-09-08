@@ -45,7 +45,7 @@ escrever qualquer código.
 | 05 | [Interfaces implícitas](modulos/05-interfaces/) | trocar onde guarda os dados |
 | 06 | [Testes de verdade](modulos/06-testes/) | ser testada sem framework |
 | 07 | [JSON e arquivos](modulos/07-json/) | não perder os pedidos ao desligar |
-| 08 | Um programa de terminal | ser usada de verdade |
+| 08 | [Um programa de terminal](modulos/08-cli/) | ser usada de verdade |
 | 09 | Genéricos | filtrar cardápio sem repetir código |
 | 10 | Servidor HTTP | atender pela internet |
 | 11 | Banco de dados | guardar tudo em Postgres |

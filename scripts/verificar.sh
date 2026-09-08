@@ -39,6 +39,19 @@ if [ -n "$nao_formatados" ]; then
   exit 1
 fi
 
+echo "==> conferindo que os exercícios falham sem entrar em pânico"
+# Com os stubs por implementar, os testes DEVEM falhar. O que eles não podem
+# fazer é entrar em pânico: um índice fora da faixa ou um nil desreferenciado
+# aborta o binário de teste inteiro e esconde as mensagens que deveriam
+# orientar o aluno. Cada teste precisa parar com t.Fatal antes de tocar em
+# resultado que o stub não produziu.
+saida_dos_exercicios="$(go test ./modulos/... 2>&1 || true)"
+if printf '%s' "$saida_dos_exercicios" | grep -q '^panic:'; then
+  echo "os testes dos módulos entraram em pânico com os stubs:" >&2
+  printf '%s\n' "$saida_dos_exercicios" | grep -A3 '^panic:' >&2
+  exit 1
+fi
+
 echo "==> copiando os testes dos módulos para as soluções"
 while IFS= read -r teste; do
   destino="solucoes/${teste#modulos/}"
