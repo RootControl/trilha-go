@@ -1,5 +1,9 @@
 # Trilha Go
 
+[![verificar](https://github.com/RootControl/trilha-go/actions/workflows/ci.yml/badge.svg)](https://github.com/RootControl/trilha-go/actions/workflows/ci.yml)
+[![Go](https://img.shields.io/badge/Go-1.24%2B-00ADD8?logo=go&logoColor=white)](https://go.dev/dl/)
+[![Licença](https://img.shields.io/badge/c%C3%B3digo-MIT-blue)](LICENSE)
+
 Um curso de Go em português, para quem já programa em outra linguagem.
 
 Você não vai ler sobre Go. Você vai abrir um repositório com testes falhando e
