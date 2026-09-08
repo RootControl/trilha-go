@@ -93,6 +93,9 @@ O sufixo `+dirty` quer dizer que havia alteração não commitada na hora de
 compilar, e é uma informação que vale ouro quando alguém pergunta qual código
 exatamente está rodando.
 
+Com uma ressalva importante, e ela está nas pegadinhas: isso só funciona
+quando o compilador enxerga o repositório.
+
 ## A imagem de contêiner
 
 O `Dockerfile` está em `modulos/14-producao/Dockerfile`, e as instruções de uso
@@ -158,6 +161,37 @@ paralelo brigarem. Receba a leitura como parâmetro.
 **Log no `os.Stdout`.**
 Mistura recado com dado e quebra qualquer cano, exatamente como no módulo 08.
 
+**Sem `.git` no contexto, a versão some.**
+Esta apareceu construindo a imagem deste próprio módulo. O `.dockerignore`
+exclui `.git`, porque copiar o histórico inteiro para dentro do contexto de
+construção é desperdício. Só que é dele que o compilador tira a revisão, então
+o binário de dentro do contêiner se identifica como `desenvolvimento`, e não
+com a pseudoversão que o mesmo código produz na sua máquina.
+
+Confira você mesmo:
+
+```bash
+go run ./modulos/14-producao/cmd/servidor    # versão com revisão
+docker run --rm padaria:local                # versão "desenvolvimento"
+```
+
+Há duas saídas. Tirar `.git` do `.dockerignore`, e pagar em contexto de
+construção maior. Ou passar a versão explicitamente na compilação, que é
+justamente o caso em que o velho `-ldflags` continua sendo a resposta certa:
+
+```dockerfile
+ARG VERSAO=desenvolvimento
+RUN go build -ldflags="-s -w -X main.versao=$VERSAO" ...
+```
+
+```bash
+docker build --build-arg VERSAO="$(git describe --tags --always --dirty)" ...
+```
+
+O que fica de lição não é qual das duas escolher: é que a informação de
+versão depende de o compilador enxergar o repositório, e um contexto de
+construção enxuto é exatamente o lugar onde ele não enxerga.
+
 ## O exercício
 
 Quatro implementações em `padaria/padaria.go`:
@@ -191,8 +225,12 @@ que dispara em etiqueta de versão e anexa os binários a uma versão do GitHub.
 Repare que, com uma etiqueta `v1.0.0`, a `Versao()` que você escreveu passa a
 devolver `v1.0.0` sozinha, sem nenhuma mudança de código.
 
-**Meça a imagem.** Compare o tamanho da imagem final com o da etapa de
-construção, e depois compare com `golang:1.24-alpine` como base final em vez de
+**Conserte a versão no contêiner.** Escolha uma das duas saídas descritas nas
+pegadinhas e faça `curl localhost:8080/versao` devolver a versão de verdade
+dentro do contêiner.
+
+**Meça a imagem.** A imagem final deste módulo, medida no CI, tem 6,09 MB.
+Compare com o tamanho da etapa de construção, e depois compare com `golang:1.24-alpine` como base final em vez de
 `scratch`. A diferença é a razão de existir a construção em duas etapas.
 
 **Ligue tudo.** Junte o servidor do módulo 10, o banco do 11 e a fila do 13
