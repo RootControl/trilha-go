@@ -20,6 +20,8 @@ limpar() {
     [ -n "$arquivo" ] && rm -f "$arquivo"
   done < "$lista_de_copias"
   rm -f "$lista_de_copias"
+  # -empty garante que só pastas vazias somem, nunca uma com conteúdo.
+  find solucoes -type d -name testdata -empty -delete 2>/dev/null || true
 }
 trap limpar EXIT
 
@@ -51,6 +53,15 @@ while IFS= read -r teste; do
   echo "$destino" >> "$lista_de_copias"
   echo "    $teste -> $destino"
 done < <(find modulos -name '*_test.go' | sort)
+
+echo "==> copiando os testdata dos módulos para as soluções"
+while IFS= read -r fixture; do
+  destino="solucoes/${fixture#modulos/}"
+  mkdir -p "$(dirname "$destino")"
+  cp "$fixture" "$destino"
+  echo "$destino" >> "$lista_de_copias"
+  echo "    $fixture -> $destino"
+done < <(find modulos -type d -name testdata -exec find {} -type f -print \; | sort)
 
 echo "==> rodando os testes contra as soluções"
 go test ./solucoes/...

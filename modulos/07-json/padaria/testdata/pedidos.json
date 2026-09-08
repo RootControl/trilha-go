@@ -1,0 +1,23 @@
+[
+  {
+    "cliente": "Maria",
+    "produto": {
+      "nome": "Pão de queijo",
+      "preco_em_centavos": 450,
+      "disponivel": true
+    },
+    "quantidade": 3,
+    "em": "2026-03-15T07:30:00Z"
+  },
+  {
+    "cliente": "João",
+    "produto": {
+      "nome": "Pão francês",
+      "preco_em_centavos": 100,
+      "disponivel": true
+    },
+    "quantidade": 10,
+    "em": "2026-03-15T08:15:00Z",
+    "observacao": "sem sal"
+  }
+]

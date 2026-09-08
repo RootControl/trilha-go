@@ -44,7 +44,7 @@ escrever qualquer código.
 | 04 | [Métodos e ponteiros](modulos/04-metodos/) | dar baixa no estoque |
 | 05 | [Interfaces implícitas](modulos/05-interfaces/) | trocar onde guarda os dados |
 | 06 | [Testes de verdade](modulos/06-testes/) | ser testada sem framework |
-| 07 | JSON e arquivos | não perder os pedidos ao desligar |
+| 07 | [JSON e arquivos](modulos/07-json/) | não perder os pedidos ao desligar |
 | 08 | Um programa de terminal | ser usada de verdade |
 | 09 | Genéricos | filtrar cardápio sem repetir código |
 | 10 | Servidor HTTP | atender pela internet |
