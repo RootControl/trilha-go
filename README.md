@@ -54,7 +54,7 @@ escrever qualquer código.
 | 10 | [Servidor HTTP](modulos/10-http/) | atender pela internet |
 | 11 | [Banco de dados](modulos/11-banco/) | guardar tudo em SQL |
 | 12 | [Concorrência](modulos/12-concorrencia/) | assar vários pães ao mesmo tempo |
-| 13 | Fila de pedidos | não derrubar tudo no horário de pico |
+| 13 | [Fila de pedidos](modulos/13-fila/) | não derrubar tudo no horário de pico |
 | 14 | Produção | rodar em contêiner com log e deploy |
 
 Os módulos com link estão prontos. Os outros vêm nessa ordem.
