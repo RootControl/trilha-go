@@ -28,3 +28,60 @@ jobs:
 
       - name: Verificar exercícios e soluções
         run: ./scripts/verificar.sh
+
+      - name: Compilar o servidor de produção para outros sistemas
+        # Um binário Go é estático e cruza de sistema com duas variáveis.
+        # Conferir isso no CI evita a descoberta ruim na hora de publicar.
+        run: |
+          for alvo in linux/amd64 linux/arm64 darwin/arm64 windows/amd64; do
+            sistema="${alvo%/*}"
+            arquitetura="${alvo#*/}"
+            CGO_ENABLED=0 GOOS="$sistema" GOARCH="$arquitetura" \
+              go build -trimpath -ldflags="-s -w" \
+              -o "/tmp/padaria-$sistema-$arquitetura" \
+              ./modulos/14-producao/cmd/servidor
+            echo "$alvo -> $(du -h "/tmp/padaria-$sistema-$arquitetura" | cut -f1)"
+          done
+
+  imagem:
+    # O Dockerfile do módulo 14 é conferido aqui, e não na máquina de quem
+    # escreve: um Dockerfile que ninguém constrói apodrece igual a código que
+    # ninguém compila.
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar o main apontando para a solução
+        # O main do módulo importa o pacote com os stubs, que não sobe. Para
+        # testar a imagem de verdade, o CI gera o mesmo main apontando para a
+        # solução. Uma linha de sed, e o main continua tendo uma fonte só.
+        run: |
+          mkdir -p solucoes/14-producao/cmd/servidor
+          sed 's|modulos/14-producao/padaria|solucoes/14-producao/padaria|' \
+            modulos/14-producao/cmd/servidor/main.go \
+            > solucoes/14-producao/cmd/servidor/main.go
+
+      - name: Construir a imagem
+        run: |
+          docker build \
+            -f modulos/14-producao/Dockerfile \
+            --build-arg CAMINHO=./solucoes/14-producao/cmd/servidor \
+            -t padaria:ci .
+
+      - name: Subir, consultar a saúde e desligar com graça
+        run: |
+          docker run -d --name padaria -p 8080:8080 padaria:ci
+          for tentativa in $(seq 1 30); do
+            if curl -sf localhost:8080/saude > /dev/null; then break; fi
+            sleep 1
+          done
+          echo "saude:  $(curl -s localhost:8080/saude)"
+          echo "versao: $(curl -s localhost:8080/versao)"
+          docker stop padaria
+          echo "--- log do contêiner:"
+          docker logs padaria
+          docker rm padaria
+
+      - name: Tamanho da imagem final
+        run: docker images padaria:ci --format "{{.Repository}}:{{.Tag}} {{.Size}}"

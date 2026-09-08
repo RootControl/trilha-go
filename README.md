@@ -55,9 +55,14 @@ escrever qualquer código.
 | 11 | [Banco de dados](modulos/11-banco/) | guardar tudo em SQL |
 | 12 | [Concorrência](modulos/12-concorrencia/) | assar vários pães ao mesmo tempo |
 | 13 | [Fila de pedidos](modulos/13-fila/) | não derrubar tudo no horário de pico |
-| 14 | Produção | rodar em contêiner com log e deploy |
+| 14 | [Produção](modulos/14-producao/) | rodar em contêiner com log e deploy |
 
-Os módulos com link estão prontos. Os outros vêm nessa ordem.
+A trilha está completa: os catorze módulos estão escritos, com exercícios,
+soluções e testes rodando no CI.
+
+Ao final, a padaria é um serviço em contêiner, com API HTTP, banco de dados,
+fila de pedidos com paralelismo limitado, log estruturado e desligamento
+ordenado.
 
 ## Comandos
 
